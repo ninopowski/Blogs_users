@@ -4,6 +4,15 @@
 
 {% endblock %}
 
+
 {% block content %}
- <h1> Test </h1>
+
+{% for blogpost in posts: %}
+
+{{ blogpost.title }}
+{{ blogpost.author }}
+{{ blogpost.body }}
+
+{% endfor %}
+
 {% endblock %}
