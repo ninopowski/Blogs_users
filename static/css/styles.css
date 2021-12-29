@@ -2,6 +2,14 @@ body {
     background-color: #FFF1BD;
 }
 
+form {
+    display: inline-block;
+}
+
+.form-post {
+    text-align: center;
+}
+
 .navbar-brand {
     color: #A3DA8D;
     font-size: 2.5rem;
