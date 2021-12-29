@@ -19,6 +19,7 @@ class BlogPost(db.Model):
     author = db.Column(db.String(150), nullable=False)
     body = db.Column(db.String, nullable=False)
 
+#run only once
 db.create_all()
 
 
