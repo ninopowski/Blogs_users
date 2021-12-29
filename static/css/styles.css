@@ -1,0 +1,18 @@
+body {
+    background-color: #FFF1BD;
+}
+
+.navbar-brand {
+    color: #A3DA8D;
+    font-size: 2.5rem;
+}
+
+.nav-link {
+    color: #146356;
+    font-size: 1.5rem;
+    padding-top: 1.25rem;
+}
+
+.disabled {
+    margin-right: 1rem;
+}
