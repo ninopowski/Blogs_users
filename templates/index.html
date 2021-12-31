@@ -8,10 +8,19 @@
 {% block content %}
 
 {% for blogpost in posts: %}
+<div class="post">
+    <h2>
+        {{ blogpost.title }}
+    </h2>
 
-{{ blogpost.title }}
-{{ blogpost.author }}
-{{ blogpost.body }}
+    <h4 class="author">
+        {{ blogpost.author }}
+    </h4>
+
+    <p class="paragraph">
+        {{ blogpost.body }}
+    </p>
+</div>
 
 {% endfor %}
 

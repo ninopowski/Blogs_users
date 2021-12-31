@@ -24,3 +24,21 @@ form {
 .disabled {
     margin-right: 1rem;
 }
+
+.post {
+    padding-top: 70px;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+
+.author {
+    padding-top: 10px;
+}
+
+.paragraph {
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding-top: 20px;
+}
