@@ -1,0 +1,13 @@
+{% include "header.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+
+<div class="form-login">
+    <form method="POST">
+        {{ wtf.quick_form(form) }}
+    </form>
+</div>
+
+{% endblock %}

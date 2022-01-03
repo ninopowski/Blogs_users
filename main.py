@@ -1,8 +1,9 @@
 from flask import Flask, render_template, url_for, request, redirect
-from forms import PostForm, RegisterForm
+from forms import PostForm, RegisterForm, LoginForm
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, login_user, UserMixin, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 
 #flask setup
 app = Flask(__name__)
@@ -16,8 +17,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 #login menager setup
-login_menager = LoginManager()
-login_menager.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -34,7 +35,7 @@ class BlogPost(db.Model):
 #run only oncw
 #db.create_all()
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = "Users"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
@@ -50,10 +51,33 @@ def home():
     return render_template("index.html", posts=posts)
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
-    pass
+    if form.validate_on_submit():
+        new_user = User(
+            name=form.name.data,
+            email=form.email.data,
+            password=generate_password_hash(
+                password=form.password.data,
+                method="pbkdf2:sha256",
+                salt_length=8
+            ),
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        login_user(new_user)
+        return redirect(url_for("home"))
+    return render_template("register.html", form=form, current_user=current_user)
+
+
+@app.route("/login")
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        pass
+    return render_template("login.html", form=form, current_user=current_user)
+
 
 @app.route("/new-post", methods=["GET", "POST"])
 def new_post():

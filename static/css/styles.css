@@ -10,6 +10,14 @@ form {
     text-align: center;
 }
 
+.form-register {
+    text-align: center;
+}
+
+.form-login {
+    text-align: center
+}
+
 .navbar-brand {
     color: #A3DA8D;
     font-size: 2.5rem;
